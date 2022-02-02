@@ -66,7 +66,92 @@ def patient_normalise(data):
     return normalised
 
 
+class Observation:
+    def __init__(self, day, value):
+        self.day = day
+        self.value = value
 
-# TODO(lesson-design) Add Patient class
+    def __str__(self):
+        return str(self.value)
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return self.name
+
+
+class Doctor(Person): # patient is a subclass of person
+    """A doctor in an inflammation study."""
+
+    # def __init__(self, name):  # define a method; called every time we create a new instance of the class
+    #     self.name = name             # ...the argument `self` refers to the instance on which we are calling the method
+    #     self.observations = []
+    def __init__(self, name):
+        super().__init__(name)  # uses init of superclass (parent class)
+        self.patients = []
+
+    def add_patient(self, p_name):
+        new_patient = p_name
+        self.patients.append(new_patient)
+        return new_patient
+
+    def __str__(self):  # print this when print(classinstance)
+        return self.name
+
+
+class Patient(Person): # patient is a subclass of person
+    """A patient in an inflammation study."""
+
+    # def __init__(self, name):  # define a method; called every time we create a new instance of the class
+    #     self.name = name             # ...the argument `self` refers to the instance on which we are calling the method
+    #     self.observations = []
+    def __init__(self, name):
+        super().__init__(name)  # uses init of superclass (parent class)
+        self.observations = []
+
+
+    def add_observation(self, value, day=None):
+        if day is None:
+            try:
+                day = self.observations[-1]['day'] + 1
+            except IndexError:
+                day = 0
+
+        new_observation = Observation(day, value)        
+
+        self.observations.append(new_observation)
+        return new_observation
+
+    def __str__(self):  # print this when print(classinstance)
+        return self.name
+
+    @property
+    def last_observation(self):
+        return self.observations[-1]
+
+
+# alice = Patient('Alice')
+# print(alice)
+
+# obs = alice.add_observation(3)
+# print(obs)
+
+# bob = Patient('Bob')
+# print(bob)
+
+# obs = bob.add_observation(4)
+# print(obs)
+
+# alice = Doctor('Dr Alice')
+# print(alice)
+
+# doc = alice.add_patient('Poorly Bob')
+# print(doc)
+
+
+
+
 # TODO(lesson-design) Implement data persistence
 # TODO(lesson-design) Add Doctor class
