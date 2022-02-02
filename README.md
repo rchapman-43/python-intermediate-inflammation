@@ -23,3 +23,9 @@ Several tests have been implemented already, some of which are currently failing
 These failing tests set out the requirements for the additional code to be implemented during the workshop.
 
 The tests should be run using `pytest`, which will be introduced during the workshop.
+
+## ACTUAL
+
+This is a messy repository that I am abandoning... **runs away, laughing manically**
+
+Btw the serializers stuff doesn't work. And I will not be fixing it. LOL. 
